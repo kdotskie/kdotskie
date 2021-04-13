@@ -1,0 +1,173 @@
+@model MVCSoftware.Models.a_user
+@{
+    ViewBag.Title = "Software";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/iremitlogo.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginpageStyle/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginpageStyle/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginpageStyle/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link href="~/Content/iremit.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginpageStyle/vendor/select2/select2.min.css">
+    <link rel="icon" type="image/png" href="~/images/iremitlogo.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginpageStyle/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/LoginpageStyle/css/main.css">
+    <!--===============================================================================================-->
+    <style>
+
+        body {
+            font-family: 'Century Gothic';
+        }
+
+        .leo {
+            background-color: lightblue;
+        }
+
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../images/Ripple-1s-200px.gif') 50% 50% no-repeat rgb(249,249,249);
+            opacity: .4;
+        }
+
+        .leomark {
+            font-family: 'Century Gothic';
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="loader"></div>
+    <div class="leo">
+
+        <div class="main">
+            <div class="container-login100">
+                <div class="wrap-login100" style="height:600px">
+                    <div class="login100-pic js-tilt" data-tilt>
+                        <img src="../images/iremitlogo.png" height="190" alt="IMG">
+                    </div>
+                    <div class="leomark"></div>
+
+                    @using (Html.BeginForm(new { @class = "login100-form validate-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <span class="login100-form-title">
+
+                        </span>
+
+                        @Html.ValidationMessageFor(Model => Model.user_id, "", new { @class = "text-danger", @style = "font-size:14px;" })
+                        <div class="wrap-input100 validate-input" data-validate="Username is required">
+                            @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "input100", @type = "text", @name = "user_id", @placeholder = "Software ID" } })
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger", @style = "font-size:14px;" })
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "input100", @type = "password", @name = "password", @placeholder = "Password" } })
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="container-login100-form-btn">
+                            <input type="submit" class="login100-form-btn" value="Confirm" />
+                        </div>
+                        if (TempData["message"] != null)
+                        //if(ViewBag.Message != null)
+                        {
+                            @*<script type="text/javascript">
+                                    window.onload = function () {
+                                        alert("@ViewBag.Message");
+                                    };
+                                </script>*@
+
+                            <div class="text-danger" style="font-size:13px;">
+                                <span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@TempData["message"]</span>
+                            </div>
+                        }
+                    }
+
+                    <footer id="footer">
+                        <p class="copyright">
+                            <style>
+                                body {
+                                    font-family: 'Century Gothic'
+                                }
+                            </style> &copy; @DateTime.Now.ToString("yyyy") - I-Remit Inc. All Rights Reserved.
+                        </p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+
+
+
+</html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/notify.min.js"></script>
+<script src="~/DisplayAnnouncementComponents/assets/js/browser.min.js"></script>
+<script src="~/DisplayAnnouncementComponents/assets/js/breakpoints.min.js"></script>
+<script src="~/DisplayAnnouncementComponents/assets/js/util.js"></script>
+<script src="~/DisplayAnnouncementComponents/assets/js/main.js"></script>
+
+<script type="text/javascript">
+    $(window).load(function () {
+        $(".loader").fadeOut("slow");
+    });
+</script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/LoginpageStyle/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginpageStyle/vendor/bootstrap/js/popper.js"></script>
+<script src="~/LoginpageStyle/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginpageStyle/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginpageStyle/vendor/tilt/tilt.jquery.min.js"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
+<!--===============================================================================================-->
